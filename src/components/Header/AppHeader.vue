@@ -23,10 +23,29 @@
           </div>
         </div>
       </div>
+      <div>
+        <div>
+          <button>
+            <span>Каталог Товаров</span>
+          </button>
+        </div>
+        <div>
+          <input type="text" name="" id="" />
+          <button></button>
+        </div>
+        <div>
+          <div>
+            <span>050 065 87 96</span>
+            <button></button>
+          </div>
+          <span></span>
+          <div></div>
+        </div>
+      </div>
     </div>
   </header>
 </template>
-<style>
+<style scoped>
 header {
   background: #060f42;
   height: 40px;

@@ -8,6 +8,7 @@ import * as directives from 'vuetify/directives'
 import App from './App.vue'
 import router from './router'
 import 'vuetify/styles'
+import client from './server/server'
 
 const vuetify = createVuetify({
   components,
@@ -15,6 +16,8 @@ const vuetify = createVuetify({
 })
 
 const app = createApp(App)
+
+app.provide('apollo', client)
 
 app.use(createPinia())
 app.use(router)
