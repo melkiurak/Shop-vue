@@ -14,12 +14,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.13.7",
-    "@fortawesome/fontawesome-free": "^6.7.2",
-    "@fortawesome/fontawesome-svg-core": "^6.7.2",
-    "@fortawesome/free-brands-svg-icons": "^6.7.2",
-    "@fortawesome/free-regular-svg-icons": "^6.7.2",
-    "@fortawesome/free-solid-svg-icons": "^6.7.2",
-    "@fortawesome/vue-fontawesome": "^3.0.8",
+    "@kalimahapps/vue-icons": "^1.7.1",
     "@vue/apollo-composable": "^4.2.2",
     "graphql": "^16.10.0",
     "graphql-tag": "^2.12.6",
@@ -30,7 +25,6 @@
     "vuetify": "^3.8.1"
   },
   "devDependencies": {
-    "@mdi/font": "^7.4.47",
     "@tsconfig/node22": "^22.0.1",
     "@types/node": "^22.14.0",
     "@vitejs/plugin-vue": "^5.2.3",

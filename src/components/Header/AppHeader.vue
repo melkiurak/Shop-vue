@@ -1,79 +1,216 @@
+<script setup lang="ts">
+import {
+  AkSearch,
+  BxUser,
+  AnOutlinedProduct,
+  CaScalesTipped,
+  MdOutlinedShoppingCart,
+  AkChevronDownSmall,
+  BsSuitHeart,
+} from '@kalimahapps/vue-icons'
+</script>
 <template>
-  <header>
-    <div class="container">
-      <div class="header-content">
-        <div class="navigation">
-          <v-app-bar-nav-icon></v-app-bar-nav-icon>
-          <nav class="nav-menu">
-            <ul class="nav-list">
-              <li class="nav-item">Акции</li>
-              <li class="nav-item">Кредит</li>
-              <li class="nav-item">Оплата и доставка</li>
-              <li class="nav-item">Помощь</li>
-              <li class="nav-item">Скупка Б/У</li>
-              <li class="nav-item">Контакты</li>
+  <header class="header">
+    <div class="header__top">
+      <div class="header__top-menu container">
+        <div class="header__navigation">
+          <v-app-bar-nav-icon size="24"></v-app-bar-nav-icon>
+          <nav class="header__nav-menu">
+            <ul class="header__nav-list">
+              <li class="header__nav-item">Акции</li>
+              <li class="header__nav-item">Кредит</li>
+              <li class="header__nav-item">Оплата и доставка</li>
+              <li class="header__nav-item">Помощь</li>
+              <li class="header__nav-item">Скупка Б/У</li>
+              <li class="header__nav-item">Контакты</li>
             </ul>
           </nav>
         </div>
-        <div class="language-selector">
-          <div class="language-buttons">
+        <div class="header__language-selector">
+          <div class="header__language-buttons">
             <button>EN</button>
             /
             <button>UA</button>
           </div>
+          <BxUser class="header__user-icon" />
         </div>
       </div>
-      <div>
-        <div>
-          <button>
-            <span>Каталог Товаров</span>
+    </div>
+    <div class="header__footer">
+      <div class="header__footer-functions container">
+        <div class="header__footer-item">
+          <img src="/public/Logo.png" alt="" />
+          <button class="header__footer-catalog">
+            <span class="header__footer-text">Каталог Товаров</span>
+            <AnOutlinedProduct class="header__catalog-icon" />
           </button>
         </div>
-        <div>
-          <input type="text" name="" id="" />
-          <button></button>
+        <div class="header__footer-search">
+          <input type="text" class="header__footer-input" name="" id="" placeholder="Поиск" />
+          <button class="header__button-search">
+            <AkSearch class="header__search-icon" />
+          </button>
         </div>
-        <div>
-          <div>
+        <div class="header__footer-info">
+          <div class="header__footer-contact">
             <span>050 065 87 96</span>
-            <button></button>
+            <button class="header__button-phones">
+              <AkChevronDownSmall class="header__arrow-icon" />
+            </button>
           </div>
-          <span></span>
-          <div></div>
+          <span class="header__footer-separator"></span>
+          <div class="header__footer-actions">
+            <CaScalesTipped class="header__actions-icon" />
+            <BsSuitHeart class="header__actions-icon" />
+            <MdOutlinedShoppingCart class="header__actions-icon" />
+          </div>
         </div>
       </div>
     </div>
   </header>
 </template>
 <style scoped>
-header {
+.header__top {
   background: #060f42;
+  color: #f4f8fb;
   height: 40px;
 }
-.header-content {
+.header__top-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   height: 100%;
+}
+.header__navigation {
   display: flex;
   align-items: center;
-  color: #f4f8fb;
-}
-.navigation {
-  display: flex;
-  align-items: center;
-  flex: 1;
-}
-
-.nav-list {
-  display: flex;
   gap: 24px;
 }
-.nav-item {
-  font-size: 12px;
-  font-weight: 500;
-  font-family: 'Lato', sans-serif;
+.header__nav-list {
+  display: flex;
+  align-items: center;
+  gap: 24px;
 }
-.language-buttons {
-  font-size: 12px;
-  font-weight: 500;
+.header__nav-item {
   font-family: 'Lato', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+}
+.header__language-selector {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.header__user-icon {
+  font-size: 32px;
+}
+.header__language-buttons {
+  font-family: 'Lato', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+}
+.header__footer {
+  box-shadow: 0 7px 6px #0000000f;
+  padding: 24px 0;
+}
+.header__footer-functions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 49px;
+  padding: 3.5px 0;
+}
+.header__footer-item {
+  height: 100%;
+  display: flex;
+  gap: 30px;
+}
+.header__footer-catalog {
+  height: 100%;
+  background-color: #06a56c;
+  padding: 0 12px;
+  border-radius: 4px;
+  color: #f4f8fb;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.header__catalog-icon {
+  font-size: 24px;
+}
+.header__footer-search {
+  position: relative;
+  flex: 1;
+  height: 100%;
+}
+.header__footer-input {
+  border: 1px #e6e6e6 solid;
+  width: 100%;
+  height: 100%;
+  padding-left: 12px;
+  font-size: 12px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  outline: none;
+  color: gray;
+  border-radius: 4px;
+}
+.header__footer-input::placeholder {
+  font-size: 12px;
+  color: gray;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+}
+.header__button-search {
+  background-color: #01579b;
+  height: 100%;
+  padding: 9px 12px;
+  color: #f4f8fb;
+  position: absolute;
+  right: 0;
+  border-radius: 0px 4px 4px 0px;
+}
+.header__search-icon {
+  font-size: 24px;
+}
+.header__footer-info {
+  display: flex;
+  align-items: center;
+  gap: 23.5px;
+  height: 100%;
+}
+.header__footer-contact {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #060f42;
+  span {
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+  }
+}
+.header__button-phones {
+  width: 32px;
+  height: 32px;
+}
+.header__arrow-icon {
+  padding: 4;
+  font-size: 24px;
+}
+.header__footer-separator {
+  width: 2px;
+  height: 32px;
+  background-color: #060f42;
+}
+.header__footer-actions {
+  display: flex;
+  gap: 15px;
+  height: 100%;
+}
+.header__actions-icon {
+  width: 46px;
+  height: 100%;
 }
 </style>
