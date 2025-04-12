@@ -7,6 +7,7 @@ import {
   MdOutlinedShoppingCart,
   AkChevronDownSmall,
   BsSuitHeart,
+  FePhoneCall,
 } from '@kalimahapps/vue-icons'
 </script>
 <template>
@@ -26,6 +27,7 @@ import {
             </ul>
           </nav>
         </div>
+        <img class="header__logo-phone" src="/public/LogoPhone.png" alt="" />
         <div class="header__language-selector">
           <div class="header__language-buttons">
             <button>EN</button>
@@ -34,12 +36,13 @@ import {
           </div>
           <BxUser class="header__user-icon" />
         </div>
+        <FePhoneCall class="header__icons-phone" />
       </div>
     </div>
     <div class="header__footer">
       <div class="header__footer-functions container">
         <div class="header__footer-item">
-          <img src="/public/Logo.png" alt="" />
+          <img class="header__logo-Desctop" src="/public/Logo.png" alt="" />
           <button class="header__footer-catalog">
             <span class="header__footer-text">Каталог Товаров</span>
             <AnOutlinedProduct class="header__catalog-icon" />
@@ -60,9 +63,9 @@ import {
           </div>
           <span class="header__footer-separator"></span>
           <div class="header__footer-actions">
-            <CaScalesTipped class="header__actions-icon" />
-            <BsSuitHeart class="header__actions-icon" />
-            <MdOutlinedShoppingCart class="header__actions-icon" />
+            <CaScalesTipped class="header__actions-icon header__scale" />
+            <BsSuitHeart class="header__actions-icon header__heart" />
+            <MdOutlinedShoppingCart class="header__actions-icon header__cart" />
           </div>
         </div>
       </div>
@@ -119,7 +122,6 @@ import {
   justify-content: space-between;
   gap: 16px;
   height: 49px;
-  padding: 3.5px 0;
 }
 .header__footer-item {
   height: 100%;
@@ -212,5 +214,62 @@ import {
 .header__actions-icon {
   width: 46px;
   height: 100%;
+}
+.header__logo-phone,
+.header__icons-phone {
+  display: none;
+}
+@media (max-width: 1440px) {
+  .header__logo-Desctop {
+    display: none;
+  }
+}
+@media (max-width: 1024px) {
+  .header__footer-contact,
+  .header__footer-separator,
+  .header__heart,
+  .header__scale {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-color: #060f42;
+  }
+  .header__nav-menu,
+  .header__footer-input,
+  .header__user-icon,
+  .header__language-buttons {
+    display: none;
+  }
+  .header__actions-icon {
+    width: 40px;
+    color: white;
+  }
+  .header__logo-phone,
+  .header__icons-phone {
+    display: block;
+  }
+  .header__search-icon {
+    width: 32px;
+    height: 32px;
+  }
+  .header__icons-phone {
+    width: 31px;
+    height: 31px;
+  }
+  .header__button-search {
+    background: transparent;
+    padding: 0;
+  }
+  .header__top {
+    padding-top: 8px;
+  }
+  .header__footer {
+    padding-bottom: 8px;
+  }
 }
 </style>
