@@ -27,4 +27,5 @@ coverage
 *.sln
 *.sw?
 .env
+C:\Users\User\Desktop\Work\Shop-vue\src\server\server.ts
 *.tsbuildinfo

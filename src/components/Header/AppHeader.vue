@@ -1,21 +1,12 @@
-<script setup lang="ts">
-import {
-  AkSearch,
-  BxUser,
-  AnOutlinedProduct,
-  CaScalesTipped,
-  MdOutlinedShoppingCart,
-  AkChevronDownSmall,
-  BsSuitHeart,
-  FePhoneCall,
-} from '@kalimahapps/vue-icons'
-</script>
 <template>
   <header class="header">
     <div class="header__top">
       <div class="header__top-menu container">
         <div class="header__navigation">
-          <v-app-bar-nav-icon size="24"></v-app-bar-nav-icon>
+          <v-app-bar-nav-icon
+            @click="showBurgerMenu = !showBurgerMenu"
+            size="24"
+          ></v-app-bar-nav-icon>
           <nav class="header__nav-menu">
             <ul class="header__nav-list">
               <li class="header__nav-item">Акции</li>
@@ -27,7 +18,7 @@ import {
             </ul>
           </nav>
         </div>
-        <img class="header__logo-phone" src="/public/LogoPhone.png" alt="" />
+        <img class="header__logo-phone" src="../../assets/LogoPhone.png" alt="" />
         <div class="header__language-selector">
           <div class="header__language-buttons">
             <button>EN</button>
@@ -42,7 +33,7 @@ import {
     <div class="header__footer">
       <div class="header__footer-functions container">
         <div class="header__footer-item">
-          <img class="header__logo-Desctop" src="/public/Logo.png" alt="" />
+          <img class="header__logo-Desctop" src="../../assets/Logo.png" alt="" />
           <button class="header__footer-catalog">
             <span class="header__footer-text">Каталог Товаров</span>
             <AnOutlinedProduct class="header__catalog-icon" />
@@ -70,8 +61,28 @@ import {
         </div>
       </div>
     </div>
+    <AppBurgerMenu v-if="showBurgerMenu" @close="closeBurger" />
   </header>
 </template>
+<script setup lang="ts">
+import {
+  AkSearch,
+  BxUser,
+  AnOutlinedProduct,
+  CaScalesTipped,
+  MdOutlinedShoppingCart,
+  AkChevronDownSmall,
+  BsSuitHeart,
+  FePhoneCall,
+} from '@kalimahapps/vue-icons'
+import AppBurgerMenu from './MenuBurger/AppBurgerMenu.vue'
+import { ref } from 'vue'
+
+const showBurgerMenu = ref(false)
+const closeBurger = () => {
+  showBurgerMenu.value = false
+}
+</script>
 <style scoped>
 .header__top {
   background: #060f42;

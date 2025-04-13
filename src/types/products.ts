@@ -6,9 +6,11 @@ interface Product {
   brand_id: { name: string }
   category_id: { name: string }
 }
+
 interface GetProductsData {
   products: {
     edges: { node: Product }[]
   }
 }
+
 export type { Product, GetProductsData }

@@ -5,12 +5,12 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 import 'vuetify/styles'
-import client from './server/server'
 import vuetify from './plugins/vuetify'
+import { provideApolloClient } from '@vue/apollo-composable'
+import client from './server/server'
 
 const app = createApp(App)
-
-app.provide('apollo', client)
+provideApolloClient(client)
 
 app.use(createPinia())
 app.use(router)
