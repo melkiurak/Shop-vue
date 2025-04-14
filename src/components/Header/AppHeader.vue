@@ -40,10 +40,21 @@
           </button>
         </div>
         <div class="header__footer-search">
-          <input type="text" class="header__footer-input" name="" id="" placeholder="Поиск" />
+          <input
+            type="text"
+            class="header__footer-input"
+            name=""
+            id=""
+            placeholder="Поиск"
+            v-model="productInput"
+          />
           <button class="header__button-search">
             <AkSearch class="header__search-icon" />
           </button>
+          <ResultSearch
+            v-if="filteredProducts && filteredProducts.length"
+            :filtered-products="filteredProducts"
+          />
         </div>
         <div class="header__footer-info">
           <div class="header__footer-contact">
@@ -76,12 +87,41 @@ import {
   FePhoneCall,
 } from '@kalimahapps/vue-icons'
 import AppBurgerMenu from './MenuBurger/AppBurgerMenu.vue'
-import { ref } from 'vue'
+import ResultSearch from './ResultSearch/ResultSearch.vue'
+import { ref, watch } from 'vue'
+import { useQuery } from '@vue/apollo-composable'
+import type { GetProductsData, Product } from '@/types/products'
+import GET_PRODUCTS from '@/server/data'
+
+const { result } = useQuery<GetProductsData>(GET_PRODUCTS)
 
 const showBurgerMenu = ref(false)
+const productInput = ref('')
+const filteredProducts = ref<{ node: Product }[]>([])
+const searchProduct = (searchTerm: string) => {
+  const searchWords = searchTerm.toLowerCase().trim().split(/\s+/)
+
+  return (
+    result.value?.products.edges.filter((edge) => {
+      const nameWords = edge.node.name.toLowerCase().trim().split(/\s+/)
+
+      return searchWords.every((searchWord) =>
+        nameWords.some((nameWord) => nameWord.startsWith(searchWord)),
+      )
+    }) || []
+  )
+}
+
 const closeBurger = () => {
   showBurgerMenu.value = false
 }
+watch(productInput, (newValue) => {
+  if (!newValue.trim()) {
+    filteredProducts.value = []
+  } else {
+    filteredProducts.value = searchProduct(newValue)
+  }
+})
 </script>
 <style scoped>
 .header__top {
@@ -230,6 +270,7 @@ const closeBurger = () => {
 .header__icons-phone {
   display: none;
 }
+
 @media (max-width: 1440px) {
   .header__logo-Desctop {
     display: none;
