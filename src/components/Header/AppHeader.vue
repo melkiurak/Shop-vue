@@ -47,6 +47,7 @@
             id=""
             placeholder="Поиск"
             v-model="productInput"
+            @focus="overlayActive = true"
           />
           <button class="header__button-search">
             <AkSearch class="header__search-icon" />
@@ -97,6 +98,7 @@ const { result } = useQuery<GetProductsData>(GET_PRODUCTS)
 
 const showBurgerMenu = ref(false)
 const productInput = ref('')
+const overlayActive = ref(false)
 const filteredProducts = ref<{ node: Product }[]>([])
 const searchProduct = (searchTerm: string) => {
   const searchWords = searchTerm.toLowerCase().trim().split(/\s+/)
@@ -118,12 +120,25 @@ const closeBurger = () => {
 watch(productInput, (newValue) => {
   if (!newValue.trim()) {
     filteredProducts.value = []
+    overlayActive.value = false
   } else {
     filteredProducts.value = searchProduct(newValue)
+    overlayActive.value = true
+  }
+})
+watch(overlayActive, (newValue) => {
+  if (newValue) {
+    document.body.classList.add('overlay-active')
+  } else {
+    document.body.classList.remove('overlay-active')
   }
 })
 </script>
 <style scoped>
+.header {
+  position: sticky;
+  z-index: 100;
+}
 .header__top {
   background: #060f42;
   color: #f4f8fb;
@@ -164,6 +179,7 @@ watch(productInput, (newValue) => {
   font-weight: 500;
 }
 .header__footer {
+  background-color: white;
   box-shadow: 0 7px 6px #0000000f;
   padding: 24px 0;
 }

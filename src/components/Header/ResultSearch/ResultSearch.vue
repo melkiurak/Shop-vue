@@ -1,8 +1,12 @@
 <template>
   <div class="result">
-    <ul>
-      <li v-for="(edge, index) in props.filteredProducts" :key="index">{{ edge.node.name }}</li>
-    </ul>
+    <nav class="result__nav">
+      <ul class="result__nav-list">
+        <li class="result__nav-item" v-for="(edge, index) in props.filteredProducts" :key="index">
+          <a href="">{{ edge.node.name }}</a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </template>
 
@@ -13,12 +17,27 @@ const props = defineProps<{
 </script>
 <style scoped>
 .result {
-  position: fixed;
-  top: 0;
+  position: absolute;
+  top: 78px;
   left: 0;
-  z-index: 10;
   width: 100%;
-  height: 100%;
-  background: #00000080;
+  background-color: #ffffff;
+  border-radius: 4px;
+}
+.result__nav {
+  display: flex;
+  padding: 15px 20px;
+}
+.result__nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.result__nav-item {
+  a:hover {
+    color: red;
+    text-decoration: underline red;
+    text-underline-offset: 4px;
+  }
 }
 </style>
