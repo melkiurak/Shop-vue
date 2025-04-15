@@ -20,4 +20,16 @@ const GET_PRODUCTS = gql`
     }
   }
 `
-export default GET_PRODUCTS
+const GET_CATEGORYS = gql`
+  query {
+    categories {
+      edges {
+        node {
+          objectId
+          name
+        }
+      }
+    }
+  }
+`
+export default { GET_PRODUCTS, GET_CATEGORYS }

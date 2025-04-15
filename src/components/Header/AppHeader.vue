@@ -34,7 +34,7 @@
       <div class="header__footer-functions container">
         <div class="header__footer-item">
           <img class="header__logo-Desctop" src="../../assets/Logo.png" alt="" />
-          <button class="header__footer-catalog">
+          <button class="header__footer-catalog" @click="catalog = !catalog">
             <span class="header__footer-text">Каталог Товаров</span>
             <AnOutlinedProduct class="header__catalog-icon" />
           </button>
@@ -75,6 +75,7 @@
       </div>
     </div>
     <AppBurgerMenu v-if="showBurgerMenu" @close="closeBurger" />
+    <AppCatalog v-if="catalog" />
   </header>
 </template>
 <script setup lang="ts">
@@ -94,13 +95,14 @@ import { ref, watch } from 'vue'
 import { useQuery } from '@vue/apollo-composable'
 import type { GetProductsData, Product } from '@/types/products'
 import GET_PRODUCTS from '@/server/data'
+import AppCatalog from '../Catalog/AppCatalog.vue'
 
 const { result } = useQuery<GetProductsData>(GET_PRODUCTS)
 
 const showBurgerMenu = ref(false)
-const productInput = ref('')
-
 const overlayActive = ref(false)
+const catalog = ref(false)
+const productInput = ref('')
 const filteredProducts = ref<{ node: Product }[]>([])
 
 const searchProduct = (searchTerm: string) => {
@@ -132,11 +134,11 @@ watch(productInput, (newValue) => {
   }
 })
 watch(overlayActive, (newValue) => {
-  if (newValue) {
-    document.body.classList.add('overlay-active')
-  } else {
-    document.body.classList.remove('overlay-active')
-  }
+  document.body.classList.toggle('overlay-active', newValue)
+})
+
+watch(catalog, (newValue) => {
+  document.body.classList.toggle('overlay-active', newValue)
 })
 </script>
 <style scoped>
