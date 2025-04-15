@@ -55,6 +55,7 @@
           <ResultSearch
             v-if="filteredProducts && filteredProducts.length"
             :filtered-products="filteredProducts"
+            :searchTerm="productInput"
           />
         </div>
         <div class="header__footer-info">
@@ -98,17 +99,21 @@ const { result } = useQuery<GetProductsData>(GET_PRODUCTS)
 
 const showBurgerMenu = ref(false)
 const productInput = ref('')
+
 const overlayActive = ref(false)
 const filteredProducts = ref<{ node: Product }[]>([])
+
 const searchProduct = (searchTerm: string) => {
   const searchWords = searchTerm.toLowerCase().trim().split(/\s+/)
 
   return (
     result.value?.products.edges.filter((edge) => {
       const nameWords = edge.node.name.toLowerCase().trim().split(/\s+/)
-
-      return searchWords.every((searchWord) =>
-        nameWords.some((nameWord) => nameWord.startsWith(searchWord)),
+      const categorys = edge.node?.category_id?.name.toLowerCase().trim().split(/\s+/)
+      return searchWords.every(
+        (searchWord) =>
+          nameWords.some((nameWord) => nameWord.startsWith(searchWord)) ||
+          categorys.some((category) => category.startsWith(searchWord)),
       )
     }) || []
   )

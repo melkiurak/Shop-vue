@@ -5,7 +5,16 @@ const GET_PRODUCTS = gql`
     products {
       edges {
         node {
+          objectId
           name
+          desctiption
+          brand_id {
+            name
+          }
+          category_id {
+            name
+          }
+          price
         }
       }
     }
