@@ -1,6 +1,6 @@
 import gql from 'graphql-tag'
 
-const GET_PRODUCTS = gql`
+export const GET_PRODUCTS = gql`
   query {
     products {
       edges {
@@ -20,7 +20,7 @@ const GET_PRODUCTS = gql`
     }
   }
 `
-const GET_CATEGORYS = gql`
+export const GET_CATEGORYS = gql`
   query {
     categories {
       edges {
@@ -32,4 +32,3 @@ const GET_CATEGORYS = gql`
     }
   }
 `
-export default { GET_PRODUCTS, GET_CATEGORYS }

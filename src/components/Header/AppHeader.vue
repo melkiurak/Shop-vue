@@ -75,7 +75,7 @@
       </div>
     </div>
     <AppBurgerMenu v-if="showBurgerMenu" @close="closeBurger" />
-    <AppCatalog v-if="catalog" />
+    <AppCatalog :result="result" v-if="catalog" />
   </header>
 </template>
 <script setup lang="ts">
@@ -94,8 +94,8 @@ import ResultSearch from './ResultSearch/ResultSearch.vue'
 import { ref, watch } from 'vue'
 import { useQuery } from '@vue/apollo-composable'
 import type { GetProductsData, Product } from '@/types/products'
-import GET_PRODUCTS from '@/server/data'
 import AppCatalog from '../Catalog/AppCatalog.vue'
+import { GET_PRODUCTS } from '@/server/data'
 
 const { result } = useQuery<GetProductsData>(GET_PRODUCTS)
 
