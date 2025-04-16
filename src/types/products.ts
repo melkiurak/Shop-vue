@@ -15,7 +15,7 @@ interface GetProductsData {
   products: {
     edges: { node: Product }[]
   }
-  сategories: {
+  categories: {
     edges: { node: Categories }[]
   }
 }

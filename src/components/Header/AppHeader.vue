@@ -75,7 +75,7 @@
       </div>
     </div>
     <AppBurgerMenu v-if="showBurgerMenu" @close="closeBurger" />
-    <AppCatalog :result="result" v-if="catalog" />
+    <AppCatalog v-if="catalog" />
   </header>
 </template>
 <script setup lang="ts">
@@ -143,7 +143,7 @@ watch(catalog, (newValue) => {
 </script>
 <style scoped>
 .header {
-  position: sticky;
+  position: relative;
   z-index: 100;
 }
 .header__top {
