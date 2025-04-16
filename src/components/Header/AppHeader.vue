@@ -314,6 +314,10 @@ watch(catalog, (newValue) => {
     gap: 16px;
     background-color: #060f42;
   }
+  .header__footer {
+    padding-bottom: 8px;
+    background-color: inherit;
+  }
   .header__nav-menu,
   .header__footer-input,
   .header__user-icon,
@@ -328,6 +332,9 @@ watch(catalog, (newValue) => {
   .header__icons-phone {
     display: block;
   }
+  .header__footer-search {
+    flex: 0;
+  }
   .header__search-icon {
     width: 32px;
     height: 32px;
@@ -339,12 +346,10 @@ watch(catalog, (newValue) => {
   .header__button-search {
     background: transparent;
     padding: 0;
+    position: static;
   }
   .header__top {
     padding-top: 8px;
-  }
-  .header__footer {
-    padding-bottom: 8px;
   }
 }
 </style>

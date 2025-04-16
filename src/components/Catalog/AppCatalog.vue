@@ -57,6 +57,9 @@ const categoryIcons: Record<string, unknown> = {
   border-radius: 4px;
   padding: 0;
   height: 566px;
+  position: absolute;
+  left: 0;
+  right: 0;
 }
 .catalog__menu {
   height: 100%;

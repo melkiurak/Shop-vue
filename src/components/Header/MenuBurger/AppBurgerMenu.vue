@@ -9,6 +9,9 @@ import {
   AkYoutubeFill,
   ReLinkedinFill,
 } from '@kalimahapps/vue-icons'
+import { ref } from 'vue'
+const isInformationShow = ref(false)
+const isServiceShow = ref(false)
 </script>
 <template>
   <div class="burger" @click.self="$emit('close')">
@@ -24,46 +27,58 @@ import {
           <h6>Регестрация</h6>
         </div>
         <div class="menu__information">
-          <div class="menu__information-section">
+          <button class="menu__information-section" @click="isInformationShow = !isInformationShow">
             <h6>Информация</h6>
-            <IcNavArrowDown class="menu__icons" />
-          </div>
-          <div class="menu__information-subcategory">
-            <ul>
-              <li>Акции</li>
-              <li>Кредит</li>
-              <li>Оплата и доставка</li>
-              <li>Гарантия</li>
-              <li>Частые вопросы</li>
-              <li>Новости</li>
-              <li>Блог</li>
-              <li>О нас</li>
-              <li>Политика конфиденциальности</li>
-              <li>Контакты</li>
-            </ul>
-          </div>
+            <IcNavArrowDown
+              class="menu__icons"
+              :style="{ transform: isInformationShow ? 'rotate(180deg)' : 'rotate(0deg)' }"
+            />
+          </button>
+          <Transition name="slide-down">
+            <div class="menu__information-subcategory" v-if="isInformationShow">
+              <ul class="menu__service-list">
+                <li class="titles__Normal-t12">Акции</li>
+                <li class="titles__Normal-t12">Кредит</li>
+                <li class="titles__Normal-t12">Оплата и доставка</li>
+                <li class="titles__Normal-t12">Гарантия</li>
+                <li class="titles__Normal-t12">Частые вопросы</li>
+                <li class="titles__Normal-t12">Новости</li>
+                <li class="titles__Normal-t12">Блог</li>
+                <li class="titles__Normal-t12">О нас</li>
+                <li class="titles__Normal-t12">Политика конфиденциальности</li>
+                <li class="titles__Normal-t12">Контакты</li>
+              </ul>
+            </div>
+          </Transition>
         </div>
         <div class="menu__service">
-          <div class="menu__service-section">
+          <button class="menu__service-section" @click="isServiceShow = !isServiceShow">
             <h6>Наши сервисы</h6>
-            <IcNavArrowDown class="menu__icons" />
-          </div>
-          <div class="menu__service-subcategory">
-            <ul>
-              <li>Rosetka</li>
-              <li>UA</li>
-            </ul>
-          </div>
+            <IcNavArrowDown
+              class="menu__icons"
+              :style="{ transform: isServiceShow ? 'rotate(180deg)' : 'rotate(0deg)' }"
+            />
+          </button>
+          <Transition name="slide-down">
+            <div class="menu__service-subcategory" v-if="isServiceShow">
+              <ul class="menu__service-list">
+                <li class="titles__Normal-t12">Rosetka</li>
+                <li class="titles__Normal-t12">UA</li>
+              </ul>
+            </div>
+          </Transition>
         </div>
         <div class="menu__contacts">
           <h6>Контакты</h6>
           <div class="menu__contacts-list">
             <ul>
-              <li>(067) 11-12-485 - Отдел продаж</li>
-              <li>(066) 484-39-22 - Отдел продаж</li>
-              <li>(063) 747-33-48 - Отдел продаж</li>
-              <li>Днепр Европейская, 8 (бывшая Миронова 8)</li>
-              <li>Понедельник-Пятница 9:00-19:00 Суббота-Воскресенье: с 9:00-16:00</li>
+              <li class="titles__Normal-t12">(067) 11-12-485 - Отдел продаж</li>
+              <li class="titles__Normal-t12">(066) 484-39-22 - Отдел продаж</li>
+              <li class="titles__Normal-t12">(063) 747-33-48 - Отдел продаж</li>
+              <li class="titles__Normal-t12">Днепр Европейская, 8 (бывшая Миронова 8)</li>
+              <li class="titles__Normal-t12">
+                Понедельник-Пятница 9:00-19:00 Суббота-Воскресенье: с 9:00-16:00
+              </li>
             </ul>
           </div>
         </div>
@@ -112,7 +127,7 @@ import {
   display: flex;
   flex-direction: column;
   gap: 40px;
-  width: 500px;
+  width: 20%;
   padding: 30px 30px 0 30px;
   height: 100%;
   background-color: #060f42;
@@ -145,6 +160,9 @@ import {
   }
 }
 .menu__networks-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
   button {
     width: 32px;
     height: 32px;
@@ -157,17 +175,61 @@ import {
 .menu__networks-icons {
   font-size: 24px;
 }
-.menu__information {
+.menu__information,
+.menu__service {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-.menu__information-section {
+.menu__information-section,
+.menu__service-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
+.menu__service-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.menu__contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.menu__contacts-list {
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+.menu__networks {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 .menu__icons {
   font-size: 24px;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
+}
+@media (max-width: 1440px) {
+  .burger__content {
+    width: 30%;
+  }
+}
+@media (max-width: 1024px) {
+  .burger__content {
+    width: 40%;
+    padding: 15px 15px 0 15px;
+  }
+}
+@media (max-width: 768px) {
+  .burger__content {
+    width: 80%;
+  }
 }
 </style>
