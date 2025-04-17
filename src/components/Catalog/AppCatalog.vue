@@ -18,6 +18,7 @@
             ></component>
             <span class="titles__Normal-t16">{{ category.node.name }}</span>
           </span>
+          <h1>sas</h1>
           <MdTwoToneKeyboardArrowRight class="catalog__icons" />
         </button>
       </div>
