@@ -1,8 +1,16 @@
 <template>
-  <div class="catalog container">
+  <div class="catalog container" @click.self="$emit('toggleOverlay')">
     <div class="catalog__menu">
+      <div class="catalog__menu-header">
+        <h6>Каталог</h6>
+        <CdChromeClose class="menu__icons-header" />
+      </div>
       <div class="catalog__menu-list">
-        <button v-for="category in categorys?.categories.edges" :key="category.node.objectId">
+        <button
+          v-for="category in categorys?.categories.edges"
+          :key="category.node.objectId"
+          @click="() => handelClick(category.node)"
+        >
           <span class="catalog__icons-wrapper">
             <component
               class="catalog__icons"
@@ -18,7 +26,7 @@
 </template>
 <script setup lang="ts">
 import { GET_CATEGORYS } from '@/server/data'
-import type { GetProductsData } from '@/types/products'
+import type { Categories, GetProductsData } from '@/types/products'
 import { useQuery } from '@vue/apollo-composable'
 import {
   PhLightHeadphones,
@@ -33,6 +41,7 @@ import {
   MdOutlinedRouter,
   BsTv,
   MdTwoToneKeyboardArrowRight,
+  CdChromeClose,
 } from '@kalimahapps/vue-icons'
 const { result: categorys } = useQuery<GetProductsData>(GET_CATEGORYS)
 const normalizedCategoryName = (name: string) => name.trim()
@@ -49,47 +58,10 @@ const categoryIcons: Record<string, unknown> = {
   'Сетевое оборудование': MdOutlinedRouter,
   'Игровые консоли': IoOutlineGameController,
 }
+const handelClick = (category: Categories) => {
+  console.log(category.subCategory)
+}
 </script>
 <style>
-.catalog {
-  margin-top: 5px;
-  background: #ffffff;
-  border-radius: 4px;
-  padding: 0;
-  height: 566px;
-  position: absolute;
-  left: 0;
-  right: 0;
-}
-.catalog__menu {
-  height: 100%;
-}
-.catalog__menu-list {
-  width: 100%;
-  width: 370px;
-  display: flex;
-  flex-direction: column;
-  align-items: baseline;
-  gap: 2.8px;
-  button {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px;
-    color: #060f42;
-    box-shadow: 0px 2px 0px 0 #0000000a;
-  }
-  button:hover {
-    background-color: #f4f8fb;
-    color: #01579b;
-  }
-}
-.catalog__icons-wrapper {
-  display: flex;
-  gap: 8px;
-}
-.catalog__icons {
-  font-size: 24px;
-}
+@import './Catalog.module.css';
 </style>

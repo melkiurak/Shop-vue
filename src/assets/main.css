@@ -144,7 +144,7 @@ body,
 html {
   height: 100vh;
 }
-body.overlay-active::after {
+.overlay-active::before {
   content: '';
   background-color: #00000080;
   position: fixed;

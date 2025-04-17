@@ -6,9 +6,15 @@ interface Product {
   brand_id: { name: string }
   category_id: { name: string }
 }
+interface SubCategory {
+  name: string
+}
 interface Categories {
   name: string
   objectId: string
+  subCategory: {
+    edges: { node: SubCategory }[]
+  }
 }
 
 interface GetProductsData {
@@ -20,4 +26,4 @@ interface GetProductsData {
   }
 }
 
-export type { Product, GetProductsData, Categories }
+export type { Product, GetProductsData, Categories, SubCategory }

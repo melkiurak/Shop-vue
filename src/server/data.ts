@@ -27,6 +27,13 @@ export const GET_CATEGORYS = gql`
         node {
           objectId
           name
+          subCategory {
+            edges {
+              node {
+                name
+              }
+            }
+          }
         }
       }
     }

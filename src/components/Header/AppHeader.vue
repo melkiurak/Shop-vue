@@ -75,7 +75,7 @@
       </div>
     </div>
     <AppBurgerMenu v-if="showBurgerMenu" @close="closeBurger" />
-    <AppCatalog v-if="catalog" />
+    <AppCatalog v-if="catalog" @close="closeCatalog" />
   </header>
 </template>
 <script setup lang="ts">
@@ -123,6 +123,9 @@ const searchProduct = (searchTerm: string) => {
 
 const closeBurger = () => {
   showBurgerMenu.value = false
+}
+const closeCatalog = () => {
+  catalog.value = false
 }
 watch(productInput, (newValue) => {
   if (!newValue.trim()) {
