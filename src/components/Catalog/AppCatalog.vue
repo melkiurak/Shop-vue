@@ -10,7 +10,6 @@
           v-for="category in categorys?.categories.edges"
           :key="category.node.objectId"
           @mouseenter="hoveredCategory(category.node)"
-          class="catalog-menu__category-item"
         >
           <a href="">
             <component
@@ -24,13 +23,14 @@
       </ul>
       <ul v-if="currentHoveredCategory" class="catalog-modal__subcategories">
         <li>
-          <a class="titles__Strong-t16" href="">{{ currentHoveredCategory.name }}</a>
+          <a class="titles__Strong-t16" href="">{{ currentHoveredCategory }}</a>
           <ul>
             <li
               v-for="subCategory in currentHoveredCategory.subCategory.edges"
               :key="subCategory.node.objectId"
+              class="titles__Strong-t14"
             >
-              <a class="titles__Strong-t14" href="">{{ subCategory.node.name }}</a>
+              <a href="">{{ subCategory.node.name }}</a>
             </li>
           </ul>
         </li>

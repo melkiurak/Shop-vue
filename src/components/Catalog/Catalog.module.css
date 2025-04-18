@@ -35,14 +35,26 @@
 }
 .catalog-modal__subcategories {
   flex: 1;
+  padding: 15px 30px;
   li {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
     width: 100%;
-    padding: 12px;
     color: #01579b;
     a {
       display: flex;
       align-items: center;
       gap: 8px;
+    }
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      li {
+        color: #666666;
+      }
     }
   }
   li:hover {
