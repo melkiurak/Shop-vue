@@ -7,6 +7,7 @@ interface Product {
   category_id: { name: string }
 }
 interface SubCategory {
+  objectId: string
   name: string
 }
 interface Categories {

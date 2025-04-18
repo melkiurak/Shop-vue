@@ -5,23 +5,36 @@
         <h6>Каталог</h6>
         <CdChromeClose class="menu__icons-header" />
       </div>
-      <div class="catalog__menu-list">
-        <button
+      <ul class="catalog__modal-categories">
+        <li
           v-for="category in categorys?.categories.edges"
           :key="category.node.objectId"
-          @click="() => handelClick(category.node)"
+          @mouseenter="hoveredCategory(category.node)"
+          class="catalog-menu__category-item"
         >
-          <span class="catalog__icons-wrapper">
+          <a href="">
             <component
               class="catalog__icons"
               :is="categoryIcons[normalizedCategoryName(category.node.name)] || null"
             ></component>
             <span class="titles__Normal-t16">{{ category.node.name }}</span>
-          </span>
-          <h1>sas</h1>
-          <MdTwoToneKeyboardArrowRight class="catalog__icons" />
-        </button>
-      </div>
+            <MdTwoToneKeyboardArrowRight class="catalog__icons-arrow" />
+          </a>
+        </li>
+      </ul>
+      <ul v-if="currentHoveredCategory" class="catalog-modal__subcategories">
+        <li>
+          <a class="titles__Strong-t16" href="">{{ currentHoveredCategory.name }}</a>
+          <ul>
+            <li
+              v-for="subCategory in currentHoveredCategory.subCategory.edges"
+              :key="subCategory.node.objectId"
+            >
+              <a class="titles__Strong-t14" href="">{{ subCategory.node.name }}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -44,6 +57,7 @@ import {
   MdTwoToneKeyboardArrowRight,
   CdChromeClose,
 } from '@kalimahapps/vue-icons'
+import { ref } from 'vue'
 const { result: categorys } = useQuery<GetProductsData>(GET_CATEGORYS)
 const normalizedCategoryName = (name: string) => name.trim()
 const categoryIcons: Record<string, unknown> = {
@@ -59,8 +73,9 @@ const categoryIcons: Record<string, unknown> = {
   'Сетевое оборудование': MdOutlinedRouter,
   'Игровые консоли': IoOutlineGameController,
 }
-const handelClick = (category: Categories) => {
-  console.log(category.subCategory)
+const currentHoveredCategory = ref<Categories | null>(null)
+const hoveredCategory = (subCategory: Categories) => {
+  currentHoveredCategory.value = subCategory
 }
 </script>
 <style>
