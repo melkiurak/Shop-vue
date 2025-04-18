@@ -22,15 +22,18 @@
         </li>
       </ul>
       <ul v-if="currentHoveredCategory" class="catalog-modal__subcategories">
-        <li>
-          <a class="titles__Strong-t16" href="">{{ currentHoveredCategory }}</a>
+        <li
+          v-for="subCategory in currentHoveredCategory.subCategory.edges"
+          :key="subCategory.node.objectId"
+        >
+          <a class="titles__Strong-t16" href="">{{ subCategory.node.name }}</a>
           <ul>
             <li
-              v-for="subCategory in currentHoveredCategory.subCategory.edges"
-              :key="subCategory.node.objectId"
+              v-for="Brand in subCategory.node.Brand.edges"
+              :key="Brand.node.objectId"
               class="titles__Strong-t14"
             >
-              <a href="">{{ subCategory.node.name }}</a>
+              <a href="">{{ Brand.node.name }}</a>
             </li>
           </ul>
         </li>

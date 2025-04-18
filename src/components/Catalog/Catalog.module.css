@@ -36,6 +36,10 @@
 .catalog-modal__subcategories {
   flex: 1;
   padding: 15px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-wrap: wrap;
   li {
     display: flex;
     flex-direction: column;

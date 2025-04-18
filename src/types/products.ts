@@ -6,9 +6,16 @@ interface Product {
   brand_id: { name: string }
   category_id: { name: string }
 }
+interface Brand {
+  name: string
+  objectId: string
+}
 interface SubCategory {
   objectId: string
   name: string
+  Brand: {
+    edges: { node: Brand }[]
+  }
 }
 interface Categories {
   name: string

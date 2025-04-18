@@ -30,8 +30,14 @@ export const GET_CATEGORYS = gql`
           subCategory {
             edges {
               node {
-                objectId
                 name
+                Brand {
+                  edges {
+                    node {
+                      name
+                    }
+                  }
+                }
               }
             }
           }
