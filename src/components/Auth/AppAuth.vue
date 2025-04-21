@@ -12,14 +12,18 @@
           </div>
           <div class="auth__form-group">
             <input
-              type="password"
+              :type="showPassword ? 'text' : 'password'"
               placeholder="Пароль"
               v-model="password"
               @change="validatePassword(password)"
+              :class="!passwordMessage ? '' : 'auth__erorr-input'"
             />
+            <button type="button" @click="handelShowPassword">
+              <TaEye class="auth__icons-eye" />
+            </button>
             <a href="" class="titles__Normal-t10">Забыли пароль?</a>
           </div>
-          <span v-if="passwordMessage">Пароль не верен</span>
+          <span v-if="passwordMessage" class="auth__error titles__Normal-t10">Пароль не верен</span>
           <button class="auth__form-submit">
             <span class="label__Strong-Extra-Small–10">ВОЙТИ</span>
           </button>
@@ -46,12 +50,15 @@
 </template>
 
 <script setup lang="ts">
-import { AnOutlinedClose, FaBandsFacebookF, BsGoogle } from '@kalimahapps/vue-icons'
-import { ref } from 'vue'
-
+import { AnOutlinedClose, FaBandsFacebookF, BsGoogle, TaEye } from '@kalimahapps/vue-icons'
+import { ref, watch } from 'vue'
 const password = ref('')
 const phone = ref('')
+const showPassword = ref(false)
 const passwordMessage = ref(false)
+const handelShowPassword = () => {
+  showPassword.value = !showPassword.value
+}
 const validatePassword = (password: string) => {
   const regularPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/
   if (regularPassword.test(password)) {
@@ -60,6 +67,9 @@ const validatePassword = (password: string) => {
     passwordMessage.value = true
   }
 }
+watch(password, (newVal) => {
+  validatePassword(newVal)
+})
 </script>
 <style scoped>
 @import './Auth.module.css';
