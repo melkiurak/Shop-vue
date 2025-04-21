@@ -10,6 +10,7 @@
           v-for="category in categorys?.categories.edges"
           :key="category.node.objectId"
           @mouseenter="hoveredCategory(category.node)"
+          @click.prevent="hoveredCategory(category.node)"
         >
           <a href="">
             <component

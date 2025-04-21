@@ -25,7 +25,9 @@
             /
             <button>UA</button>
           </div>
-          <BxUser class="header__user-icon" />
+          <button @click="auth = !auth">
+            <BxUser class="header__user-icon" />
+          </button>
         </div>
         <FePhoneCall class="header__icons-phone" />
       </div>
@@ -76,6 +78,7 @@
     </div>
     <AppBurgerMenu v-if="showBurgerMenu" @close="closeBurger" />
     <AppCatalog v-if="catalog" @close="closeCatalog" />
+    <AppAuth v-if="auth" @close="closeAuth" />
   </header>
 </template>
 <script setup lang="ts">
@@ -96,12 +99,14 @@ import { useQuery } from '@vue/apollo-composable'
 import type { GetProductsData, Product } from '@/types/products'
 import AppCatalog from '../Catalog/AppCatalog.vue'
 import { GET_PRODUCTS } from '@/server/data'
+import AppAuth from '../Auth/AppAuth.vue'
 
 const { result } = useQuery<GetProductsData>(GET_PRODUCTS)
 
 const showBurgerMenu = ref(false)
 const overlayActive = ref(false)
 const catalog = ref(false)
+const auth = ref(false)
 const productInput = ref('')
 const filteredProducts = ref<{ node: Product }[]>([])
 
@@ -126,6 +131,9 @@ const closeBurger = () => {
 }
 const closeCatalog = () => {
   catalog.value = false
+}
+const closeAuth = () => {
+  auth.value = false
 }
 watch(productInput, (newValue) => {
   if (!newValue.trim()) {

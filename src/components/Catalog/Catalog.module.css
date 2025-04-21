@@ -34,7 +34,6 @@
   }
 }
 .catalog-modal__subcategories {
-  flex: 1;
   padding: 15px 30px;
   display: flex;
   flex-direction: column;

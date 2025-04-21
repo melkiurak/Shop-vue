@@ -88,6 +88,14 @@ h6 {
   letter-spacing: 0%;
   vertical-align: middle;
 }
+.titles__Normal-t10 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 16px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+}
 .titles__Strong-t24 {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
@@ -135,6 +143,21 @@ h6 {
   line-height: 16px;
   letter-spacing: 0%;
   vertical-align: middle;
+}
+.label__Strong-Extra-Small–10 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 10px;
+  letter-spacing: 3%;
+}
+.label__Strong-Small-12 {
+  font-family: 'Lato', sans-serif;
+
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 12px;
+  letter-spacing: 0%;
 }
 a {
   color: inherit;
