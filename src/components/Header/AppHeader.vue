@@ -112,12 +112,21 @@ const props = defineProps<{
   subCategory: { edges: { node: SubCategory }[] } | undefined
 }>()
 const searchWords = productInput.value.toLowerCase().trim().split(/\s+/)
+
 const searchProduct = () => {
   return (
     props.product?.edges?.filter((edge) => {
-      const nameWords = edge?.node?.name?.toLowerCase().trim().split(/\s+/)
-      return searchWords.every((searchWord) =>
-        nameWords.some((nameWord) => nameWord.startsWith(searchWord)),
+      const productNames = edge?.node?.name?.toLowerCase().trim().split(/\s+/)
+      const categoryNames = edge?.node?.category_id.edges
+        .filter((edge) => edge.node.name)
+        .toLocaleString()
+        .trim()
+        .split(/\s+/)
+        .flat()
+      return searchWords.every(
+        (searchWord) =>
+          productNames.some((productName) => productName.startsWith(searchWord)) &&
+          categoryNames.some((categoryName) => categoryName.startsWith(searchWord)),
       )
     }) || []
   )
