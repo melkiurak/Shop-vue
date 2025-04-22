@@ -7,7 +7,9 @@
           v-for="(edge, index) in props.filteredProducts"
           :key="index"
         >
-          <span v-html="highlightInput(edge.node.name, searchTerm)"></span>
+          <a href="">
+            <span v-html="highlightInput(edge.node.name, searchTerm)"></span>
+          </a>
         </li>
       </ul>
       <ul class="result__nav-list">
@@ -16,7 +18,10 @@
           <p class="Label__Strong-Large-16">Поиск по категории</p>
         </div>
         <li lass="result__nav-item" v-for="(edge, index) in props.filteredProducts" :key="index">
-          <a href="">{{ edge.node.name || '' }} {{ edge.node.category_id.name || '' }}</a>
+          <a href="">{{
+            edge.node.category_id.edges.map((edge) => edge.node.name).join(', ') ||
+            'Категория не доступна'
+          }}</a>
         </li>
       </ul>
     </nav>
@@ -24,9 +29,10 @@
 </template>
 
 <script setup lang="ts">
+import type { Categories } from '@/types/products'
 import { AnOutlinedProduct } from '@kalimahapps/vue-icons'
 const props = defineProps<{
-  filteredProducts: { node: { name: string; category_id: { name: string } } }[]
+  filteredProducts: { node: { name: string; category_id: { edges: { node: Categories }[] } } }[]
   searchTerm: string
 }>()
 const highlightInput = (text: string, searchTerm: string) => {
@@ -34,12 +40,10 @@ const highlightInput = (text: string, searchTerm: string) => {
   const regex = new RegExp(`(${cleanedSearch})`, 'i')
   return text.replace(regex, `<span class="text-black">$1</span>`)
 }
+console.log(props.filteredProducts)
 </script>
 <style scoped>
 .result {
-  position: absolute;
-  top: 78px;
-  left: 0;
   width: 100%;
   background-color: #ffffff;
   border-radius: 4px;
@@ -48,7 +52,7 @@ const highlightInput = (text: string, searchTerm: string) => {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  padding: 15px 20px;
+  padding-bottom: 12px;
 }
 .result__nav-list {
   display: flex;
@@ -56,26 +60,25 @@ const highlightInput = (text: string, searchTerm: string) => {
   gap: 5px;
 }
 .result__nav-item {
+  padding: 12px 0 12px 24px;
   a {
     color: #060f42;
-  }
-  a:hover {
-    color: red;
-    text-decoration: underline red;
-    text-underline-offset: 4px;
   }
   span {
     color: #999999;
   }
+}
+.result__nav-item:hover {
+  background-color: #060f4205;
 }
 .list__title {
   display: flex;
   align-items: center;
   gap: 4px;
   color: #060f42;
+  padding-left: 12px;
 }
 .list__icons {
-  color: #060f42;
   font-size: 20px;
 }
 </style>

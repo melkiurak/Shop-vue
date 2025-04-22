@@ -102,7 +102,7 @@ import { GET_PRODUCTS } from '@/server/data'
 import AppAuth from '../Auth/AppAuth.vue'
 
 const { result } = useQuery<GetProductsData>(GET_PRODUCTS)
-
+console.log(result)
 const showBurgerMenu = ref(false)
 const overlayActive = ref(false)
 const catalog = ref(false)
@@ -112,7 +112,6 @@ const filteredProducts = ref<{ node: Product }[]>([])
 
 const searchProduct = (searchTerm: string) => {
   const searchWords = searchTerm.toLowerCase().trim().split(/\s+/)
-
   return (
     result.value?.products.edges.filter((edge) => {
       const nameWords = edge?.node?.name?.toLowerCase().trim().split(/\s+/)
@@ -122,7 +121,6 @@ const searchProduct = (searchTerm: string) => {
     }) || []
   )
 }
-
 const closeBurger = () => {
   showBurgerMenu.value = false
 }

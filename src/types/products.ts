@@ -4,7 +4,7 @@ interface Product {
   price: number
   stock_quantity: number
   brand_id: { name: string }
-  category_id: { name: string }
+  category_id: { edges: { node: Categories }[] }
 }
 interface Brand {
   name: string
