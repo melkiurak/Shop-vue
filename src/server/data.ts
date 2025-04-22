@@ -7,6 +7,7 @@ export const GET_PRODUCTS = gql`
         node {
           objectId
           name
+          image_url
           desctiption
           brand_id {
             name
@@ -45,6 +46,17 @@ export const GET_CATEGORYS = gql`
               }
             }
           }
+        }
+      }
+    }
+  }
+`
+export const GET_SUB_CATEGORYS = gql`
+  query {
+    subCategories {
+      edges {
+        node {
+          name
         }
       }
     }

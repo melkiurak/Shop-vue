@@ -25,6 +25,22 @@
           <AkArrowRight class="result__icons" />
         </li>
       </ul>
+      <ul class="result__nav-list-product">
+        <li
+          class="result__nav-product"
+          v-for="(edge, index) in props.filteredProducts"
+          :key="index"
+        >
+          <a href="" class="result__nav-product-info">
+            <img
+              class="result__img-product"
+              :src="edge.node.image_url || 'У него нет фото'"
+              alt=""
+            />
+            <span>{{ edge.node.name }}</span>
+          </a>
+        </li>
+      </ul>
     </nav>
   </div>
 </template>
@@ -33,7 +49,13 @@
 import type { Categories } from '@/types/products'
 import { AnOutlinedProduct, AkArrowRight } from '@kalimahapps/vue-icons'
 const props = defineProps<{
-  filteredProducts: { node: { name: string; category_id: { edges: { node: Categories }[] } } }[]
+  filteredProducts: {
+    node: {
+      name: string
+      category_id: { edges: { node: Categories }[] }
+      image_url: string
+    }
+  }[]
   searchTerm: string
 }>()
 const highlightInput = (text: string, searchTerm: string) => {
@@ -41,7 +63,6 @@ const highlightInput = (text: string, searchTerm: string) => {
   const regex = new RegExp(`(${cleanedSearch})`, 'i')
   return text.replace(regex, `<span class="text-black">$1</span>`)
 }
-console.log(props.filteredProducts)
 </script>
 <style scoped>
 .result {
@@ -87,5 +108,33 @@ console.log(props.filteredProducts)
 .result__icons {
   margin-left: auto;
   font-size: 24px;
+}
+.result__nav-list-product {
+  display: flex;
+  gap: 22px;
+  padding: 0 12px;
+}
+.result__nav-product {
+  padding: 8px;
+  box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+.result__nav-product-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  span {
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 12px;
+    color: #333333;
+  }
+}
+.result__img-product {
+  width: 80px;
+  height: 80px;
 }
 </style>

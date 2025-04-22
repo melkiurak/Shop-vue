@@ -95,14 +95,10 @@ import {
 import AppBurgerMenu from './MenuBurger/AppBurgerMenu.vue'
 import ResultSearch from './ResultSearch/ResultSearch.vue'
 import { ref, watch } from 'vue'
-import { useQuery } from '@vue/apollo-composable'
-import type { GetProductsData, Product } from '@/types/products'
+import type { Categories, Product, SubCategory } from '@/types/products'
 import AppCatalog from '../Catalog/AppCatalog.vue'
-import { GET_PRODUCTS } from '@/server/data'
 import AppAuth from '../Auth/AppAuth.vue'
 
-const { result } = useQuery<GetProductsData>(GET_PRODUCTS)
-console.log(result)
 const showBurgerMenu = ref(false)
 const overlayActive = ref(false)
 const catalog = ref(false)
@@ -110,10 +106,15 @@ const auth = ref(false)
 const productInput = ref('')
 const filteredProducts = ref<{ node: Product }[]>([])
 
-const searchProduct = (searchTerm: string) => {
-  const searchWords = searchTerm.toLowerCase().trim().split(/\s+/)
+const props = defineProps<{
+  product: { edges: { node: Product }[] } | undefined
+  category: { edges: { node: Categories }[] } | undefined
+  subCategory: { edges: { node: SubCategory }[] } | undefined
+}>()
+const searchWords = productInput.value.toLowerCase().trim().split(/\s+/)
+const searchProduct = () => {
   return (
-    result.value?.products.edges.filter((edge) => {
+    props.product?.edges?.filter((edge) => {
       const nameWords = edge?.node?.name?.toLowerCase().trim().split(/\s+/)
       return searchWords.every((searchWord) =>
         nameWords.some((nameWord) => nameWord.startsWith(searchWord)),
@@ -121,6 +122,7 @@ const searchProduct = (searchTerm: string) => {
     }) || []
   )
 }
+
 const closeBurger = () => {
   showBurgerMenu.value = false
 }
@@ -135,7 +137,7 @@ watch(productInput, (newValue) => {
     filteredProducts.value = []
     overlayActive.value = false
   } else {
-    filteredProducts.value = searchProduct(newValue)
+    filteredProducts.value = searchProduct()
     overlayActive.value = true
   }
 })

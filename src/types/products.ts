@@ -5,6 +5,7 @@ interface Product {
   stock_quantity: number
   brand_id: { name: string }
   category_id: { edges: { node: Categories }[] }
+  image_url: string
 }
 interface Brand {
   name: string
@@ -31,6 +32,9 @@ interface GetProductsData {
   }
   categories: {
     edges: { node: Categories }[]
+  }
+  subCategory: {
+    edges: { node: SubCategory }[]
   }
 }
 
