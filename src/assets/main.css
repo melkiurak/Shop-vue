@@ -6,6 +6,13 @@
   margin: 0 auto;
   padding: 0 30px;
 }
+*:focus {
+  outline: none;
+}
+* {
+  user-select: none;
+}
+
 ul,
 ul li {
   list-style-type: none;
@@ -40,124 +47,115 @@ h6 {
   font-family: 'Lato', sans-serif;
   font-weight: 600;
 }
+.Label__Normal-Medium–14 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 14px;
+}
 .titles__Normal-t24 {
   font-family: 'Lato', sans-serif;
   font-weight: 500;
   font-size: 24px;
   line-height: 28px;
-  letter-spacing: 0%;
-  vertical-align: middle;
 }
 .titles__Normal-t20 {
   font-family: 'Lato', sans-serif;
   font-weight: 500;
   font-size: 20px;
   line-height: 24px;
-  letter-spacing: 0%;
-  vertical-align: middle;
 }
 .titles__Normal-t18 {
   font-family: 'Lato', sans-serif;
   font-weight: 500;
   font-size: 18px;
   line-height: 20px;
-  letter-spacing: 0%;
-  vertical-align: middle;
 }
 .titles__Normal-t16 {
   font-family: 'Lato', sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
-  letter-spacing: 0%;
-  vertical-align: middle;
 }
 .titles__Normal-t14 {
   font-family: 'Lato', sans-serif;
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
-  letter-spacing: 0%;
-  vertical-align: middle;
 }
 .titles__Normal-t12 {
   font-family: 'Lato', sans-serif;
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
-  letter-spacing: 0%;
-  vertical-align: middle;
 }
 .titles__Normal-t10 {
   font-family: 'Lato', sans-serif;
   font-weight: 500;
   font-size: 10px;
   line-height: 16px;
-  letter-spacing: 0%;
-  vertical-align: middle;
 }
 .titles__Strong-t24 {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
   font-size: 24px;
   line-height: 28px;
-  letter-spacing: 0%;
-  vertical-align: middle;
 }
 .titles__Strong-t20 {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
-  letter-spacing: 0%;
-  vertical-align: middle;
 }
 .titles__Strong-t18 {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
   font-size: 18px;
   line-height: 24px;
-  letter-spacing: 0%;
-  vertical-align: middle;
 }
 .titles__Strong-t16 {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
-  letter-spacing: 0%;
-  vertical-align: middle;
 }
 .titles__Strong-t14 {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  letter-spacing: 0%;
-  vertical-align: middle;
 }
 .titles__Strong-t12 {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
   font-size: 12px;
   line-height: 16px;
-  letter-spacing: 0%;
-  vertical-align: middle;
 }
 .label__Strong-Extra-Small–10 {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
   font-size: 10px;
   line-height: 10px;
-  letter-spacing: 3%;
+}
+.Body__Strong-Medium–14 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  vertical-align: middle;
+}
+.Label__Strong-Large-16 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 16px;
+  vertical-align: middle;
 }
 .label__Strong-Small-12 {
   font-family: 'Lato', sans-serif;
-
   font-weight: 700;
   font-size: 12px;
   line-height: 12px;
-  letter-spacing: 0%;
 }
 a {
   color: inherit;

@@ -1,4 +1,5 @@
 <template>
+  git
   <div class="auth">
     <div class="auth__content">
       <div class="auth__content-container">
@@ -13,11 +14,11 @@
               placeholder="Ваш номер телефона"
               v-model="phone"
               @change="validatePhone(phone)"
-              :class="!passwordMessage ? '' : 'auth__erorr-input'"
+              :class="!phoneMessage ? '' : 'auth__erorr-input'"
             />
           </div>
           <span v-if="phoneMessage" class="auth__error titles__Normal-t10"
-            >Неверный номер телефона</span
+            >Номер телефона должен быть +380 99 636 4231</span
           >
           <div class="auth__form-group">
             <input

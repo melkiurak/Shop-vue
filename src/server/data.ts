@@ -12,7 +12,11 @@ export const GET_PRODUCTS = gql`
             name
           }
           category_id {
-            name
+            edges {
+              node {
+                name
+              }
+            }
           }
           price
         }

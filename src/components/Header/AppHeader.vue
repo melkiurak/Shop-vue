@@ -44,7 +44,7 @@
         <div class="header__footer-search">
           <input
             type="text"
-            class="header__footer-input"
+            class="header__footer-input Body__Strong-Medium–14"
             name=""
             id=""
             placeholder="Поиск"
@@ -115,12 +115,9 @@ const searchProduct = (searchTerm: string) => {
 
   return (
     result.value?.products.edges.filter((edge) => {
-      const nameWords = edge.node.name.toLowerCase().trim().split(/\s+/)
-      const categorys = edge.node?.category_id?.name.toLowerCase().trim().split(/\s+/)
-      return searchWords.every(
-        (searchWord) =>
-          nameWords.some((nameWord) => nameWord.startsWith(searchWord)) ||
-          categorys.some((category) => category.startsWith(searchWord)),
+      const nameWords = edge?.node?.name?.toLowerCase().trim().split(/\s+/)
+      return searchWords.every((searchWord) =>
+        nameWords.some((nameWord) => nameWord.startsWith(searchWord)),
       )
     }) || []
   )
