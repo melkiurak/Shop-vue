@@ -17,11 +17,12 @@
           <AnOutlinedProduct class="list__icons" />
           <p class="Label__Strong-Large-16">Поиск по категории</p>
         </div>
-        <li lass="result__nav-item" v-for="(edge, index) in props.filteredProducts" :key="index">
+        <li class="result__nav-item" v-for="(edge, index) in props.filteredProducts" :key="index">
           <a href="">{{
             edge.node.category_id.edges.map((edge) => edge.node.name).join(', ') ||
             'Категория не доступна'
           }}</a>
+          <AkArrowRight class="result__icons" />
         </li>
       </ul>
     </nav>
@@ -30,7 +31,7 @@
 
 <script setup lang="ts">
 import type { Categories } from '@/types/products'
-import { AnOutlinedProduct } from '@kalimahapps/vue-icons'
+import { AnOutlinedProduct, AkArrowRight } from '@kalimahapps/vue-icons'
 const props = defineProps<{
   filteredProducts: { node: { name: string; category_id: { edges: { node: Categories }[] } } }[]
   searchTerm: string
@@ -60,7 +61,9 @@ console.log(props.filteredProducts)
   gap: 5px;
 }
 .result__nav-item {
-  padding: 12px 0 12px 24px;
+  display: flex;
+  align-items: center;
+  padding: 12px 12px 12px 24px;
   a {
     color: #060f42;
   }
@@ -80,5 +83,9 @@ console.log(props.filteredProducts)
 }
 .list__icons {
   font-size: 20px;
+}
+.result__icons {
+  margin-left: auto;
+  font-size: 24px;
 }
 </style>
