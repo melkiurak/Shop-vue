@@ -17,11 +17,8 @@
           <AnOutlinedProduct class="list__icons" />
           <p class="Label__Strong-Large-16">Поиск по категории</p>
         </div>
-        <li class="result__nav-item" v-for="(edge, index) in props.filteredProducts" :key="index">
-          <a href="">{{
-            edge.node.category_id.edges.map((edge) => edge.node.name).join(', ') ||
-            'Категория не доступна'
-          }}</a>
+        <li class="result__nav-item" v-for="(category, index) in groupCategory" :key="index">
+          <a href="">{{ category || 'Категория не доступна' }}</a>
           <AkArrowRight class="result__icons" />
         </li>
       </ul>
@@ -48,6 +45,7 @@
 <script setup lang="ts">
 import type { Categories } from '@/types/products'
 import { AnOutlinedProduct, AkArrowRight } from '@kalimahapps/vue-icons'
+import { computed } from 'vue'
 const props = defineProps<{
   filteredProducts: {
     node: {
@@ -63,6 +61,13 @@ const highlightInput = (text: string, searchTerm: string) => {
   const regex = new RegExp(`(${cleanedSearch})`, 'i')
   return text.replace(regex, `<span class="text-black">$1</span>`)
 }
+const groupCategory = computed(() => {
+  const allCategory =
+    props.filteredProducts.flatMap((edge) =>
+      edge.node.category_id.edges.map((edge) => edge.node.name),
+    ) || []
+  return Array.from(new Set(allCategory))
+})
 </script>
 <style scoped>
 .result {
