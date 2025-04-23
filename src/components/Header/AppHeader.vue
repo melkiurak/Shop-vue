@@ -41,7 +41,10 @@
             <AnOutlinedProduct class="header__catalog-icon" />
           </button>
         </div>
-        <div class="header__footer-search">
+        <div
+          class="header__footer-search"
+          :class="searchMobile ? 'block__search ' : ' hidden__search '"
+        >
           <input
             type="text"
             class="header__footer-input Body__Strong-Medium–14"
@@ -49,17 +52,29 @@
             id=""
             placeholder="Поиск"
             v-model="productInput"
-            @focus="overlayActive = true"
           />
+          <button
+            @click="handelCloseSearch"
+            class="header__button-close"
+            :class="overlayActive ? 'button__close-flex' : 'button__close-none'"
+          >
+            <CaCloseLarge />
+          </button>
           <button class="header__button-search">
             <AkSearch class="header__search-icon" />
           </button>
           <ResultSearch
-            v-if="filteredProducts && filteredProducts.length"
+            v-if="(filteredProducts && filteredProducts.length) || searchMobile"
             :filtered-products="filteredProducts"
             :searchTerm="productInput"
           />
         </div>
+        <button
+          class="header__search-mobile"
+          @click="((searchMobile = !searchMobile), (overlayActive = !overlayActive))"
+        >
+          <AkSearch />
+        </button>
         <div class="header__footer-info">
           <div class="header__footer-contact">
             <span>050 065 87 96</span>
@@ -91,6 +106,7 @@ import {
   AkChevronDownSmall,
   BsSuitHeart,
   FePhoneCall,
+  CaCloseLarge,
 } from '@kalimahapps/vue-icons'
 import AppBurgerMenu from './MenuBurger/AppBurgerMenu.vue'
 import ResultSearch from './ResultSearch/ResultSearch.vue'
@@ -103,6 +119,7 @@ const showBurgerMenu = ref(false)
 const overlayActive = ref(false)
 const catalog = ref(false)
 const auth = ref(false)
+const searchMobile = ref(false)
 const productInput = ref('')
 const filteredProducts = ref<{ node: Product }[]>([])
 
@@ -123,7 +140,12 @@ const searchProduct = () => {
     }) || []
   )
 }
-
+const handelCloseSearch = () => {
+  searchMobile.value = false
+  overlayActive.value = false
+  productInput.value = ''
+  filteredProducts.value = []
+}
 const closeBurger = () => {
   showBurgerMenu.value = false
 }
@@ -136,7 +158,6 @@ const closeAuth = () => {
 watch(productInput, (newValue) => {
   if (!newValue.trim()) {
     filteredProducts.value = []
-    overlayActive.value = false
   } else {
     filteredProducts.value = searchProduct()
     overlayActive.value = true

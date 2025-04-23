@@ -1,6 +1,6 @@
 <template>
   <div class="result">
-    <nav class="result__nav">
+    <nav class="result__nav" v-if="groupCategory.length > 0 && props.filteredProducts.length > 0">
       <ul class="result__nav-list">
         <li
           class="result__nav-item Label__Normal-Medium–14"
@@ -12,7 +12,7 @@
           </a>
         </li>
       </ul>
-      <ul class="result__nav-list">
+      <ul class="result__nav-list category">
         <div class="list__title">
           <AnOutlinedProduct class="list__icons" />
           <p class="Label__Strong-Large-16">Поиск по категории</p>
@@ -74,6 +74,11 @@ const groupCategory = computed(() => {
   width: 100%;
   background-color: #ffffff;
   border-radius: 4px;
+  position: absolute;
+}
+.category {
+  white-space: nowrap;
+  overflow: hidden;
 }
 .result__nav {
   display: flex;
@@ -117,7 +122,14 @@ const groupCategory = computed(() => {
 .result__nav-list-product {
   display: flex;
   gap: 22px;
-  padding: 0 12px;
+  padding: 12px;
+  white-space: nowrap;
+  overflow-x: auto;
+  justify-content: space-between;
+  li {
+    width: 96px;
+    white-space: normal;
+  }
 }
 .result__nav-product {
   padding: 8px;
