@@ -1,5 +1,4 @@
 <template>
-  git
   <div class="auth">
     <div class="auth__content">
       <div class="auth__content-container">

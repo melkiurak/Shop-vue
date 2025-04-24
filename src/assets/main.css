@@ -9,10 +9,6 @@
 *:focus {
   outline: none;
 }
-* {
-  user-select: none;
-}
-
 ul,
 ul li {
   list-style-type: none;

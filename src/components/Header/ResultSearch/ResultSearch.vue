@@ -1,5 +1,6 @@
 <template>
   <div class="result">
+    <h1><slot></slot></h1>
     <nav class="result__nav" v-if="groupCategory.length > 0 && props.filteredProducts.length > 0">
       <ul class="result__nav-list">
         <li

@@ -1,11 +1,12 @@
 interface Product {
   name: string
   description: string
-  price: number
   stock_quantity: number
   brand_id: { name: string }
   category_id: { edges: { node: Categories }[] }
   image_url: string
+  SalesCount: number
+  price: number
 }
 interface Brand {
   name: string

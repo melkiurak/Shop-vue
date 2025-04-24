@@ -93,7 +93,7 @@
     </div>
     <AppBurgerMenu v-if="showBurgerMenu" @close="closeBurger" />
     <AppCatalog v-if="catalog" @close="closeCatalog" />
-    <AppAuth v-if="auth" @close="closeAuth" />
+    <AppAuth v-if="auth" @close="closeAuth"> </AppAuth>
   </header>
 </template>
 <script setup lang="ts">
@@ -110,7 +110,7 @@ import {
 } from '@kalimahapps/vue-icons'
 import AppBurgerMenu from './MenuBurger/AppBurgerMenu.vue'
 import ResultSearch from './ResultSearch/ResultSearch.vue'
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import type { Categories, Product, SubCategory } from '@/types/products'
 import AppCatalog from '../Catalog/AppCatalog.vue'
 import AppAuth from '../Auth/AppAuth.vue'
@@ -129,7 +129,7 @@ const props = defineProps<{
   subCategory: { edges: { node: SubCategory }[] } | undefined
 }>()
 
-const searchProduct = () => {
+const searchProduct = computed(() => {
   const searchWords = productInput.value.toLowerCase().trim().split(/\s+/)
   return (
     props.product?.edges?.filter((edge) => {
@@ -139,7 +139,7 @@ const searchProduct = () => {
       )
     }) || []
   )
-}
+})
 const handelCloseSearch = () => {
   searchMobile.value = false
   overlayActive.value = false
@@ -159,7 +159,7 @@ watch(productInput, (newValue) => {
   if (!newValue.trim()) {
     filteredProducts.value = []
   } else {
-    filteredProducts.value = searchProduct()
+    filteredProducts.value = searchProduct.value
     overlayActive.value = true
   }
 })
