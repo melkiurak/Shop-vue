@@ -48,6 +48,7 @@ h6 {
   font-size: 14px;
   line-height: 14px;
 }
+
 .titles__Normal-t24 {
   font-family: 'Lato', sans-serif;
   font-weight: 500;
@@ -174,6 +175,6 @@ html {
 
 @media (max-width: 768px) {
   .container {
-    padding: 0 16px;
+    padding: 0 8px;
   }
 }

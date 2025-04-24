@@ -197,6 +197,7 @@
   }
   .header__top {
     z-index: 90;
+    padding-top: 8px;
   }
   .header__footer {
     padding-bottom: 8px;
@@ -232,9 +233,6 @@
   .header__icons-phone {
     width: 31px;
     height: 31px;
-  }
-  .header__top {
-    padding-top: 8px;
   }
   .header__search-mobile {
     display: block;

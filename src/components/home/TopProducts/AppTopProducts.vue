@@ -20,13 +20,13 @@ const props = defineProps<{
 </script>
 <style scoped>
 .product__card-wrapper {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 16px;
+  justify-content: space-between;
 }
 .product {
   width: 242px;
-  height: 100%;
   box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.1);
 }
 .product__link {
@@ -37,5 +37,22 @@ const props = defineProps<{
 }
 .product__link-icons {
   font-size: 24px;
+}
+@media (max-width: 768px) {
+  .product {
+    width: 156px;
+  }
+}
+@media (max-width: 768px) {
+  .product__card-wrapper {
+    gap: 0;
+    row-gap: 10px;
+  }
+  .product {
+    width: 147px;
+  }
+  .product-card__buy-btn {
+    padding: 4px 8px;
+  }
 }
 </style>
