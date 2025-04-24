@@ -15,7 +15,7 @@ const { result: subCategoryResult } = useQuery<GetProductsData>(GET_SUB_CATEGORY
       :category="categoriesResult?.categories"
       :subCategory="subCategoryResult?.subCategory"
     />
-    <main>
+    <main class="container">
       <RouterView v-slot="{ Component }">
         <component :is="Component" :product="productsResult?.products"></component>
       </RouterView>
