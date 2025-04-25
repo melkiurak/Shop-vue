@@ -86,7 +86,9 @@
           <div class="header__footer-actions">
             <CaScalesTipped class="header__actions-icon header__scale" />
             <BsSuitHeart class="header__actions-icon header__heart" />
-            <MdOutlinedShoppingCart class="header__actions-icon header__cart" />
+            <button @click="cart = !cart">
+              <MdOutlinedShoppingCart class="header__actions-icon header__cart" />
+            </button>
           </div>
         </div>
       </div>
@@ -94,6 +96,7 @@
     <AppBurgerMenu v-if="showBurgerMenu" @close="closeBurger" />
     <AppCatalog v-if="catalog" @close="closeCatalog" />
     <AppAuth v-if="auth" @close="closeAuth"> </AppAuth>
+    <AppCart v-if="cart" @close="closeCart" />
   </header>
 </template>
 <script setup lang="ts">
@@ -114,12 +117,14 @@ import { computed, ref, watch } from 'vue'
 import type { Categories, Product, SubCategory } from '@/types/products'
 import AppCatalog from '../Catalog/AppCatalog.vue'
 import AppAuth from '../Auth/AppAuth.vue'
+import AppCart from '../Cart/AppCart.vue'
 
 const showBurgerMenu = ref(false)
 const overlayActive = ref(false)
 const catalog = ref(false)
 const auth = ref(false)
 const searchMobile = ref(false)
+const cart = ref(false)
 const productInput = ref('')
 const filteredProducts = ref<{ node: Product }[]>([])
 
@@ -154,6 +159,9 @@ const closeCatalog = () => {
 }
 const closeAuth = () => {
   auth.value = false
+}
+const closeCart = () => {
+  cart.value = false
 }
 watch(productInput, (newValue) => {
   if (!newValue.trim()) {

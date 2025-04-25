@@ -7,6 +7,7 @@ interface Product {
   image_url: string
   SalesCount: number
   price: number
+  objectId: string
 }
 interface Brand {
   name: string

@@ -1,6 +1,8 @@
 <template>
   <div class="product__info">
-    <img class="product__info-img" :src="props.product?.image_url" alt="" />
+    <a>
+      <img class="product__info-img" :src="props.product?.image_url" alt="" loading="lazy" />
+    </a>
     <p class="titles__Normal-t14 product__name">{{ props.product?.name }}</p>
     <p class="product__review">Отзывы:</p>
     <div class="product-card__bottom">
@@ -8,7 +10,7 @@
         <p class="titles__Strong-t18">{{ props.product?.price }}</p>
         <span class="label__Strong-Small-12">грн</span>
       </div>
-      <button class="product-card__buy-btn">
+      <button class="product-card__buy-btn" @click="handelBuyProduct">
         <span class="label__Strong-Small-12">КУПИТЬ</span>
         <MdOutlinedShoppingCart class="product-card__buy-icons" />
       </button>
@@ -82,4 +84,7 @@ import { MdOutlinedShoppingCart } from '@kalimahapps/vue-icons'
 const props = defineProps<{
   product: Product | undefined
 }>()
+const handelBuyProduct = () => {
+  console.log(props.product?.name, props.product?.objectId)
+}
 </script>
