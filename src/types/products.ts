@@ -9,6 +9,10 @@ interface Product {
   price: number
   objectId: string
 }
+interface ProductState {
+  items: Record<string, Product>
+  id: string
+}
 interface Brand {
   name: string
   objectId: string
@@ -40,4 +44,4 @@ interface GetProductsData {
   }
 }
 
-export type { Product, GetProductsData, Categories, SubCategory }
+export type { Product, GetProductsData, Categories, SubCategory, ProductState }
