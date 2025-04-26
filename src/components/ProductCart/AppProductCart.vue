@@ -10,7 +10,7 @@
         <p class="titles__Strong-t18">{{ props.product?.price }}</p>
         <span class="label__Strong-Small-12">грн</span>
       </div>
-      <button class="product-card__buy-btn" @click="handelBuyProduct()">
+      <button class="product-card__buy-btn" @click="($event) => cartStore.add(product?.objectId)">
         <span class="label__Strong-Small-12">КУПИТЬ</span>
         <MdOutlinedShoppingCart class="product-card__buy-icons" />
       </button>
@@ -85,8 +85,7 @@ import { MdOutlinedShoppingCart } from '@kalimahapps/vue-icons'
 const props = defineProps<{
   product: Product | undefined
 }>()
+const product = computed<Product>(() => productStore.items[route.params.productId as string])
+
 const cartStore = useCartStore()
-const handelBuyProduct = () => {
-  return props.product ? cartStore.addCart({ id: props.product?.objectId, quantity: 1 }) : ''
-}
 </script>

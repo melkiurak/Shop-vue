@@ -7,12 +7,16 @@ interface Product {
   image_url: string
   SalesCount: number
   price: number
-  objectId: string
+  objectId: number
 }
-interface ProductState {
-  items: Record<string, Product>
-  id: string
+interface CartItem {
+  productId: string
+  quantity: number
 }
+interface CartState {
+  contents: Record<string, CartItem>
+}
+
 interface Brand {
   name: string
   objectId: string
@@ -44,4 +48,4 @@ interface GetProductsData {
   }
 }
 
-export type { Product, GetProductsData, Categories, SubCategory, ProductState }
+export type { Product, GetProductsData, Categories, SubCategory, CartState }

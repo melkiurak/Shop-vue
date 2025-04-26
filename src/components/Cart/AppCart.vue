@@ -7,16 +7,12 @@
           <AnOutlinedClose />
         </button>
       </div>
-      <div>
-        <h1>{{ itemCart.products }}</h1>
-      </div>
+      <div></div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import { useCartStore } from '@/stores/cart'
 import { AnOutlinedClose } from '@kalimahapps/vue-icons'
-const itemCart = useCartStore()
 </script>
 <style scoped>
 .cart {
