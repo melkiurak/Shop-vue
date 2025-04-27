@@ -4,9 +4,11 @@ import AppHeader from './components/Header/AppHeader.vue'
 import { useQuery } from '@vue/apollo-composable'
 import { GET_CATEGORYS, GET_PRODUCTS, GET_SUB_CATEGORYS } from './server/data'
 import type { GetProductsData } from './types/products'
+import { useSaveCart } from './hooks/StorageCart'
 const { result: productsResult } = useQuery<GetProductsData>(GET_PRODUCTS)
 const { result: categoriesResult } = useQuery<GetProductsData>(GET_CATEGORYS)
 const { result: subCategoryResult } = useQuery<GetProductsData>(GET_SUB_CATEGORYS)
+useSaveCart()
 </script>
 <template>
   <div>

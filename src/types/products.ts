@@ -7,10 +7,10 @@ interface Product {
   image_url: string
   SalesCount: number
   price: number
-  objectId: number
+  objectId: string
 }
 interface CartItem {
-  productId: string
+  product: Product
   quantity: number
 }
 interface CartState {

@@ -7,12 +7,19 @@
           <AnOutlinedClose />
         </button>
       </div>
-      <div></div>
+      <div>
+        <div v-for="(item, index) in cart.contents" :key="index">
+          <p>{{ item.quantity }}</p>
+          <p>{{ item.product.name }}</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
+import { useCartStore } from '@/stores/cart'
 import { AnOutlinedClose } from '@kalimahapps/vue-icons'
+const cart = useCartStore()
 </script>
 <style scoped>
 .cart {

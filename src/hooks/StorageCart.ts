@@ -3,13 +3,12 @@ import { onUnmounted } from 'vue'
 
 export const CART_STORAGE = 'CART_STORAGE'
 
-export const usePersistCart = () => {
+export const useSaveCart = () => {
   const cartStore = useCartStore()
 
   const unsub = cartStore.$subscribe(() => {
-    localStorage.setItem(CART_STORAGE, JSON.stringify(cartStore.contents))
+    localStorage.setItem(CART_STORAGE, JSON.stringify(cartStore.$state.contents))
   })
-
   onUnmounted(() => {
     unsub()
   })
