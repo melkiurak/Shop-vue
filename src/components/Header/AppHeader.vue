@@ -87,7 +87,7 @@
             <CaScalesTipped class="header__actions-icon header__scale" />
             <BsSuitHeart class="header__actions-icon header__heart" />
             <button class="header__actions-cart" @click="cart = !cart">
-              <div class="cart__quantity">
+              <div class="cart__quantity" v-if="cartStore.totalQuantity >= 1">
                 <span>
                   {{ cartStore.totalQuantity }}
                 </span>
