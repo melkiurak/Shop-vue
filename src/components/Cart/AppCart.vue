@@ -15,19 +15,39 @@
           </div>
           <div class="cart__item-details">
             <div class="cart__item-quantity">
-              <button><AkMinus class="cart__item-quantity-icons" /></button>
+              <button
+                @click="cart.down(item.product)"
+                :disabled="item.quantity <= 1"
+                :class="
+                  item.quantity <= 1 ? 'cart__item-quantity-block' : 'cart__item-quantity-noblock'
+                "
+              >
+                <AkMinus class="cart__item-quantity-icons" />
+              </button>
               <input
                 class="cart__item-quantity-input"
                 type="number"
                 v-model.number="item.quantity"
+                :disabled="item.quantity >= 99"
               />
-              <button><ByPlus class="cart__item-quantity-icons" /></button>
+              <button
+                @click="cart.add(item.product)"
+                :class="
+                  item.quantity >= 99
+                    ? 'cart__item-quantity-plusBlock'
+                    : 'cart__item-quantity-plusNoBlock'
+                "
+              >
+                <ByPlus class="cart__item-quantity-icons" />
+              </button>
             </div>
             <div class="cart__item-price">
-              <p class="titles__Strong-t18">{{ item.product?.price }}</p>
+              <p class="titles__Strong-t18">{{ item.product?.price * item.quantity }}</p>
               <span class="label__Normal-Small–12">грн</span>
             </div>
-            <button class="cart__item-delete"><AkTrashCan /></button>
+            <button class="cart__item-delete" @click="cart.delete(item.product)">
+              <AkTrashCan />
+            </button>
           </div>
         </div>
       </div>
@@ -107,9 +127,18 @@ const cart = useCartStore()
     width: 32px;
     height: 32px;
     border-radius: 40px;
-    background-color: #e5e5e580;
     padding: 4px;
   }
+}
+.cart__item-quantity-block,
+.cart__item-quantity-plusBlock {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+.cart__item-quantity-noblock,
+.cart__item-quantity-plusNoBlock {
+  background-color: #e5e5e580;
+  cursor: pointer;
 }
 .cart__item-quantity-icons {
   font-size: 24px;

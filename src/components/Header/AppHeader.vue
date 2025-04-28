@@ -86,7 +86,12 @@
           <div class="header__footer-actions">
             <CaScalesTipped class="header__actions-icon header__scale" />
             <BsSuitHeart class="header__actions-icon header__heart" />
-            <button @click="cart = !cart">
+            <button class="header__actions-cart" @click="cart = !cart">
+              <div class="cart__quantity">
+                <span>
+                  {{ cartStore.totalQuantity }}
+                </span>
+              </div>
               <MdOutlinedShoppingCart class="header__actions-icon header__cart" />
             </button>
           </div>
@@ -96,7 +101,7 @@
     <AppBurgerMenu v-if="showBurgerMenu" @close="closeBurger" />
     <AppCatalog v-if="catalog" @close="closeCatalog" />
     <AppAuth v-if="auth" @close="closeAuth"> </AppAuth>
-    <AppCart v-if="cart" @close="closeCart" />
+    <AppCart v-if="cart" @close="closeCart" :product="product" />
   </header>
 </template>
 <script setup lang="ts">
@@ -118,6 +123,7 @@ import type { Categories, Product, SubCategory } from '@/types/products'
 import AppCatalog from '../Catalog/AppCatalog.vue'
 import AppAuth from '../Auth/AppAuth.vue'
 import AppCart from '../Cart/AppCart.vue'
+import { useCartStore } from '@/stores/cart'
 
 const showBurgerMenu = ref(false)
 const overlayActive = ref(false)
@@ -127,6 +133,7 @@ const searchMobile = ref(false)
 const cart = ref(false)
 const productInput = ref('')
 const filteredProducts = ref<{ node: Product }[]>([])
+const cartStore = useCartStore()
 
 const props = defineProps<{
   product: { edges: { node: Product }[] } | undefined
