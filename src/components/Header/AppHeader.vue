@@ -100,8 +100,8 @@
     </div>
     <AppBurgerMenu v-if="showBurgerMenu" @close="closeBurger" />
     <AppCatalog v-if="catalog" @close="closeCatalog" />
-    <AppAuth v-if="auth" @close="closeAuth"> </AppAuth>
-    <AppCart v-if="cart" @close="closeCart" :product="product" />
+    <AppAuth v-if="auth" @close="closeAuth"></AppAuth>
+    <AppCart v-if="cart" @close="closeCart" :product="product" :category="category" />
   </header>
 </template>
 <script setup lang="ts">

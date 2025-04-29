@@ -16,6 +16,7 @@ export const GET_PRODUCTS = gql`
             edges {
               node {
                 name
+                objectId
               }
             }
           }
@@ -37,6 +38,7 @@ export const GET_CATEGORYS = gql`
             edges {
               node {
                 name
+                objectId
                 Brand {
                   edges {
                     node {

@@ -1,7 +1,7 @@
 <template>
   <div class="cart">
     <div class="cart__content">
-      <div v-if="cart.totalQuantity">
+      <div v-if="cart.totalQuantity" class="cart__content-wrapper">
         <div class="cart__content-header">
           <h6>Корзина</h6>
           <button @click="$emit('close')" class="cart__close-btn">
@@ -15,40 +15,50 @@
               <p>{{ item.product?.name }}</p>
             </div>
             <div class="cart__item-details">
-              <div class="cart__item-quantity">
-                <button
-                  @click="cart.down(item.product)"
-                  :disabled="item.quantity <= 1"
-                  :class="
-                    item.quantity <= 1 ? 'cart__item-quantity-block' : 'cart__item-quantity-noblock'
-                  "
-                >
-                  <AkMinus class="cart__item-quantity-icons" />
-                </button>
-                <input
-                  class="cart__item-quantity-input"
-                  type="number"
-                  v-model.number="item.quantity"
-                  :disabled="item.quantity >= 99"
-                />
-                <button
-                  @click="cart.add(item.product)"
-                  :class="
-                    item.quantity >= 99
-                      ? 'cart__item-quantity-plusBlock'
-                      : 'cart__item-quantity-plusNoBlock'
-                  "
-                >
-                  <ByPlus class="cart__item-quantity-icons" />
+              <div class="cart__item-info-wrapper">
+                <p class="titles__Normal-t12">{{ item.product.name }}</p>
+                <button class="cart__item-delete" @click="cart.delete(item.product)">
+                  <AkTrashCan />
                 </button>
               </div>
-              <div class="cart__item-price">
-                <p class="titles__Strong-t18">{{ item.product?.price * item.quantity }}</p>
-                <span class="label__Normal-Small–12">грн</span>
+              <div class="cart__item-details-wrapper">
+                <div class="cart__item-quantity">
+                  <button
+                    @click="cart.down(item.product)"
+                    :disabled="item.quantity <= 1"
+                    :class="
+                      item.quantity <= 1
+                        ? 'cart__item-quantity-block'
+                        : 'cart__item-quantity-noblock'
+                    "
+                  >
+                    <AkMinus class="cart__item-quantity-icons" />
+                  </button>
+                  <input
+                    class="cart__item-quantity-input"
+                    type="number"
+                    v-model.number="item.quantity"
+                    :disabled="item.quantity >= 99"
+                  />
+                  <button
+                    @click="cart.add(item.product)"
+                    :class="
+                      item.quantity >= 99
+                        ? 'cart__item-quantity-plusBlock'
+                        : 'cart__item-quantity-plusNoBlock'
+                    "
+                  >
+                    <ByPlus class="cart__item-quantity-icons" />
+                  </button>
+                </div>
+                <div class="cart__item-price">
+                  <p class="titles__Strong-t18">{{ item.product?.price * item.quantity }}</p>
+                  <span class="label__Normal-Small–12">грн</span>
+                </div>
+                <button class="cart__item-delete" @click="cart.delete(item.product)">
+                  <AkTrashCan />
+                </button>
               </div>
-              <button class="cart__item-delete" @click="cart.delete(item.product)">
-                <AkTrashCan />
-              </button>
             </div>
           </div>
           <div class="cart__controls">
@@ -66,6 +76,7 @@
             </div>
           </div>
         </div>
+        <div class="cart__content-suggested-items"></div>
       </div>
       <AppCartEmpty v-else>
         <button @click="$emit('close')" class="cart__close-btn">
@@ -90,13 +101,20 @@ const cart = useCartStore()
   top: 0;
   left: 0;
   background-color: #00000080;
+  padding: 30px;
 }
 .cart__content {
-  width: 1064px;
+  max-width: 1064px;
+  width: 100%;
   margin: 62px auto;
   background-color: white;
   padding: 24px;
   border-radius: 4px;
+}
+.cart__content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 .cart__content-header {
   display: flex;
@@ -112,7 +130,7 @@ const cart = useCartStore()
   flex-direction: column;
 }
 .cart__item {
-  padding: 12px;
+  padding: 12px 0;
   display: flex;
   justify-content: space-between;
   gap: 106px;
@@ -221,5 +239,63 @@ const cart = useCartStore()
   gap: 2px;
   align-items: flex-end;
   color: #060f42;
+}
+.cart__item-info-wrapper {
+  display: none;
+}
+.cart__item-details-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 84px;
+  justify-content: space-between;
+  flex: 1;
+}
+@media (max-width: 1024px) {
+  .cart__item-details,
+  .cart__item-details-wrapper {
+    gap: 0;
+  }
+  .cart__item {
+    gap: 40px;
+  }
+}
+@media (max-width: 768px) {
+  .cart {
+    padding: 0;
+  }
+  .cart__content {
+    margin: 0;
+    height: 100%;
+    padding: 16px;
+  }
+  .cart__item-delete {
+    display: none;
+  }
+  .cart__item-info {
+    p {
+      display: none;
+    }
+  }
+  .cart__item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .cart__item-price {
+    padding-left: 49px;
+  }
+  .cart__item-info-wrapper {
+    width: 100%;
+    display: flex;
+    gap: 4px;
+    align-items: flex-start;
+    justify-content: space-between;
+    button {
+      display: block;
+      color: #060f42;
+    }
+  }
 }
 </style>
