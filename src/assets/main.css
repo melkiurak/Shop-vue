@@ -42,6 +42,12 @@ h6 {
   font-family: 'Lato', sans-serif;
   font-weight: 600;
 }
+.label__Strong-Medium–14 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px;
+}
 .Label__Normal-Medium–14 {
   font-family: 'Lato', sans-serif;
   font-weight: 500;
@@ -53,6 +59,12 @@ h6 {
   font-weight: 500;
   font-size: 24px;
   line-height: 28px;
+}
+.label__Strong-Extra-Large–22 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 24px;
 }
 .titles__Normal-t20 {
   font-family: 'Lato', sans-serif;
@@ -139,6 +151,7 @@ h6 {
   line-height: 20px;
   vertical-align: middle;
 }
+
 .Label__Strong-Large-16 {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
